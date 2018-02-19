@@ -154,7 +154,7 @@ p {
 
 .about-page {
   height: 100vh;
-  background-color: darkgreen;
+  background-color: rgb(241, 235, 235);
 }
 
 /* Social icons style */
@@ -223,11 +223,16 @@ p {
   
   /* Contacts page */
 
-.contacts-page {
-  flex-direction: column;
+  .contacts-page {
+    flex-direction: column;
   }
   .map-container {
-  width: 100vw;
-  height: 300px;
-}
+    width: 100vw;
+    height: 300px;
+  }
+
+  .contacts-continer {
+    width: 100vw;
+    padding: 25px 0;
+  }
 }
