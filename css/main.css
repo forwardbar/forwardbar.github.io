@@ -93,7 +93,7 @@ p {
 /* All page */
 .page {
   margin-top: -60px;
-  padding-top: 60px;
+  padding-top: 59px;
   background-clip: content-box;
 }
 /* Contacts page */
@@ -154,17 +154,43 @@ p {
 }
 /* Menu page */
 .menu-page {
-  height: 100vh;
+  min-height: 250px;
   background-color: #f1ebeb;
+  text-align: center;
 }
 
+.menu-page h2 {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 2em;
+  font-weight: 300;
+  padding: 4px;
+  border-bottom: 2px solid black;
+}
+
+.menu-page ul {
+  width: 100%;
+  margin-top: 35px;
+}
+
+.menu-page li {
+  display: inline-block;
+  width: 30vw;
+}
+.menu-page a {
+  font-size: 1.4em;
+  
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+}
 
 
 /* About page */
 
 .about-page {
   height: 100vh;
-  background-color: #f1ebeb;
+  background-color: #cec0c0;
 }
 
 /* Social icons style */
