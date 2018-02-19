@@ -3,11 +3,44 @@
 body {
   flex-direction: column;
   font-family: 'Oswald', helvetica, arial, sans;
-  
 }
 
+p {
+  line-height: 1.5;
+}
 
-/* Landing Styles */
+/* Fixed Nav */
+
+.nav{
+  position: fixed;
+  width: 100vw;
+  background: white;
+  z-index: 20;
+  display: none;
+  height: 60px;
+}
+.nav img{
+  height: 100%;
+}
+
+.nav .header-nav {
+  width: 400px;
+  color: black;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0)
+  /* margin-top: 20px; */
+}
+.nav .header-nav > li ~ li {
+  border-left: 2px solid #000000;
+  padding-left: 0.8em;
+}
+.nav .header-nav a{
+  color: black;
+}
+
+/* Landing Page */
 
 .landing-hero {
   background-color: black;
@@ -15,6 +48,7 @@ body {
   background-size: cover;
   background-position: center center;
   overflow: hidden;   
+  
 }
 
 .hero-box {
@@ -57,13 +91,78 @@ body {
   transform: translate(-50%, 0);
 }
 
+/* Contacts page */
+
+.contacts-page {
+  margin-top: -60px;
+  padding-top: 60px;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0, 139, 139);
+  background-clip: content-box;
+  
+}
+.contacts-page a {
+  color: rgb(46, 46, 46);
+}
+
+.contacts-continer {
+  width: 50vw;
+  /* height: 75vh; */
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.contacts-block {
+  padding: 5px;
+  width: 260px;
+  margin: 20px;
+  margin-right: 6vw;
+}
+.contacts-block h2 {
+  display: inline-block;
+  width: 90%;
+  font-size: 1.3em;
+  padding: 4px 5px 10px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  margin-bottom: 15px;
+}
+
+.contacts-block p {
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+.map-container {
+  width: 50vw;
+  min-height: 300px;
+}
+
+.separator-contacts {
+  height: 35vh;
+  background-color: black;
+}
+
+/* About page */
+
+.about-page {
+  height: 100vh;
+  background-color: darkgreen;
+}
+
 /* Social icons style */
 
 .social-links li{
+  width: 40px;
+  height: 40px;
+  text-align: center;
   list-style: none;
   margin: 0 15px;
   display: inline-block;
-  text-align: center;
   font-size: 1em;
 }
 .social-links li:hover{
@@ -99,6 +198,9 @@ body {
 /* Mobile Styles */
 
 @media (max-width: 800px) {
+  .nav img{
+   display: none;
+  }
   /* Landing Styles */
   .landing-hero {
     background-image: url(/images/background_mobile.jpg);
@@ -115,4 +217,14 @@ body {
   .hero-box:after {
     bottom: 55px;
   }
+  
+  /* Contacts page */
+
+.contacts-page {
+  flex-direction: column;
+  }
+  .map-container {
+  width: 100vw;
+  height: 300px;
+}
 }
