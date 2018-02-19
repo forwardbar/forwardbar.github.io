@@ -118,13 +118,13 @@ p {
 
 .contacts-block {
   padding: 5px;
-  width: 260px;
+  width: 350px;
   margin: 20px;
-  margin-right: 6vw;
+  margin-right: 4vw;
 }
 .contacts-block h2 {
   display: inline-block;
-  width: 90%;
+  width: 80%;
   font-size: 1.3em;
   padding: 4px 5px 10px;
   border-top: 2px solid black;
@@ -143,8 +143,11 @@ p {
 }
 
 .separator-contacts {
-  height: 35vh;
+  height: 45vh;
   background-color: black;
+  background-image: url(/images/people_bar.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
 /* About page */
