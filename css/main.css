@@ -146,7 +146,7 @@ p {
 }
 
 .separator-contacts {
-  height: 45vh;
+  height: 30vh;
   background-color: black;
   background-image: url(/images/people_bar.jpg);
   background-size: cover;
