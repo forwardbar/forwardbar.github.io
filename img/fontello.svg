@@ -1,1 +1,1 @@
-module.exports = __webpack_public_path__ + "fonts/fontello.145bc1dd1901789e98244a8d8aaede0d.svg";
+module.exports = __webpack_public_path__ + "fonts/fontello.svg";
