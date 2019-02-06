@@ -118,8 +118,8 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(32);
-module.exports = __webpack_require__(31);
+__webpack_require__(33);
+module.exports = __webpack_require__(32);
 
 
 /***/ }),
@@ -355,12 +355,13 @@ var map = {
 	"./krevetki.jpg": 14,
 	"./kriliya.jpg": 15,
 	"./myasnoy-nabor.jpg": 16,
-	"./rebra.jpg": 17,
-	"./shaverma.jpg": 18,
-	"./solyanka.jpg": 19,
-	"./steik-g.jpg": 20,
-	"./tar-tar.jpg": 21,
-	"./zakuski.jpg": 22
+	"./pelmeni.jpg": 17,
+	"./rebra.jpg": 18,
+	"./shaverma.jpg": 19,
+	"./solyanka.jpg": 20,
+	"./steik-g.jpg": 21,
+	"./tar-tar.jpg": 22,
+	"./zakuski.jpg": 23
 };
 
 
@@ -442,50 +443,56 @@ module.exports = __webpack_require__.p + "img/myasnoy-nabor.jpg";
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/rebra.jpg";
+module.exports = __webpack_require__.p + "img/pelmeni.jpg";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/shaverma.jpg";
+module.exports = __webpack_require__.p + "img/rebra.jpg";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/solyanka.jpg";
+module.exports = __webpack_require__.p + "img/shaverma.jpg";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/steik-g.jpg";
+module.exports = __webpack_require__.p + "img/solyanka.jpg";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/tar-tar.jpg";
+module.exports = __webpack_require__.p + "img/steik-g.jpg";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/zakuski.jpg";
+module.exports = __webpack_require__.p + "img/tar-tar.jpg";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "img/zakuski.jpg";
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var map = {
-	"./android-chrome-144x144.png": 24,
-	"./apple-touch-icon.png": 25,
-	"./favicon-16x16.png": 26,
-	"./favicon-32x32.png": 27,
-	"./favicon.ico": 28,
-	"./mstile-150x150.png": 29,
-	"./safari-pinned-tab.svg": 30
+	"./android-chrome-144x144.png": 25,
+	"./apple-touch-icon.png": 26,
+	"./favicon-16x16.png": 27,
+	"./favicon-32x32.png": 28,
+	"./favicon.ico": 29,
+	"./mstile-150x150.png": 30,
+	"./safari-pinned-tab.svg": 31
 };
 
 
@@ -507,58 +514,58 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 23;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
+webpackContext.id = 24;
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
+module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon-16x16.png";
+module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon-32x32.png";
+module.exports = __webpack_require__.p + "img/favicon-16x16.png";
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon.ico";
+module.exports = __webpack_require__.p + "img/favicon-32x32.png";
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/mstile-150x150.png";
+module.exports = __webpack_require__.p + "img/favicon.ico";
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
+module.exports = __webpack_require__.p + "img/mstile-150x150.png";
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
 
 /***/ }),
 /* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -808,7 +815,7 @@ gallery.addEventListener('transitionend', e => {
 
 
 
-const reqFavicons = __webpack_require__(23);
+const reqFavicons = __webpack_require__(24);
 
 reqFavicons.keys().forEach(reqFavicons);
 webfontloader_default.a.load({
