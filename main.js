@@ -118,8 +118,8 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34);
-module.exports = __webpack_require__(33);
+__webpack_require__(38);
+module.exports = __webpack_require__(37);
 
 
 /***/ }),
@@ -349,20 +349,24 @@ var map = {
 	"./borsch.jpg": 8,
 	"./burger.jpg": 9,
 	"./buter-sel.jpg": 10,
-	"./cesar-kurica.jpg": 11,
-	"./cheesecake.jpg": 12,
-	"./kolbasy-gov.jpg": 13,
-	"./kolbasy.jpg": 14,
-	"./krevetki.jpg": 15,
-	"./kriliya.jpg": 16,
-	"./myasnoy-nabor.jpg": 17,
-	"./pelmeni.jpg": 18,
-	"./rebra.jpg": 19,
-	"./shaverma.jpg": 20,
-	"./solyanka.jpg": 21,
-	"./steik-g.jpg": 22,
-	"./tar-tar.jpg": 23,
-	"./zakuski.jpg": 24
+	"./cesar-krevetki.jpg": 11,
+	"./cesar-kurica.jpg": 12,
+	"./cheesecake.jpg": 13,
+	"./karbonara.jpg": 14,
+	"./kolbasy-gov.jpg": 15,
+	"./kolbasy.jpg": 16,
+	"./krevetki.jpg": 17,
+	"./kriliya.jpg": 18,
+	"./myasnie-chipsi.jpg": 19,
+	"./myasnoy-nabor.jpg": 20,
+	"./pelmeni.jpg": 21,
+	"./rebra.jpg": 22,
+	"./shaverma.jpg": 23,
+	"./shaverma_krevetki.jpg": 24,
+	"./solyanka.jpg": 25,
+	"./steik-g.jpg": 26,
+	"./tar-tar.jpg": 27,
+	"./zakuski.jpg": 28
 };
 
 
@@ -408,98 +412,122 @@ module.exports = __webpack_require__.p + "img/buter-sel.jpg";
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/cesar-kurica.jpg";
+module.exports = __webpack_require__.p + "img/cesar-krevetki.jpg";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/cheesecake.jpg";
+module.exports = __webpack_require__.p + "img/cesar-kurica.jpg";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kolbasy-gov.jpg";
+module.exports = __webpack_require__.p + "img/cheesecake.jpg";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kolbasy.jpg";
+module.exports = __webpack_require__.p + "img/karbonara.jpg";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/krevetki.jpg";
+module.exports = __webpack_require__.p + "img/kolbasy-gov.jpg";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kriliya.jpg";
+module.exports = __webpack_require__.p + "img/kolbasy.jpg";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/myasnoy-nabor.jpg";
+module.exports = __webpack_require__.p + "img/krevetki.jpg";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/pelmeni.jpg";
+module.exports = __webpack_require__.p + "img/kriliya.jpg";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/rebra.jpg";
+module.exports = __webpack_require__.p + "img/myasnie-chipsi.jpg";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/shaverma.jpg";
+module.exports = __webpack_require__.p + "img/myasnoy-nabor.jpg";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/solyanka.jpg";
+module.exports = __webpack_require__.p + "img/pelmeni.jpg";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/steik-g.jpg";
+module.exports = __webpack_require__.p + "img/rebra.jpg";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/tar-tar.jpg";
+module.exports = __webpack_require__.p + "img/shaverma.jpg";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/zakuski.jpg";
+module.exports = __webpack_require__.p + "img/shaverma_krevetki.jpg";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "img/solyanka.jpg";
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/steik-g.jpg";
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/tar-tar.jpg";
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/zakuski.jpg";
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var map = {
-	"./android-chrome-144x144.png": 26,
-	"./apple-touch-icon.png": 27,
-	"./favicon-16x16.png": 28,
-	"./favicon-32x32.png": 29,
-	"./favicon.ico": 30,
-	"./mstile-150x150.png": 31,
-	"./safari-pinned-tab.svg": 32
+	"./android-chrome-144x144.png": 30,
+	"./apple-touch-icon.png": 31,
+	"./favicon-16x16.png": 32,
+	"./favicon-32x32.png": 33,
+	"./favicon.ico": 34,
+	"./mstile-150x150.png": 35,
+	"./safari-pinned-tab.svg": 36
 };
 
 
@@ -521,58 +549,58 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 25;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/favicon-16x16.png";
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/favicon-32x32.png";
+webpackContext.id = 29;
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon.ico";
+module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/mstile-150x150.png";
+module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
+module.exports = __webpack_require__.p + "img/favicon-16x16.png";
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+module.exports = __webpack_require__.p + "img/favicon-32x32.png";
 
 /***/ }),
 /* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/favicon.ico";
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/mstile-150x150.png";
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -822,7 +850,7 @@ gallery.addEventListener('transitionend', e => {
 
 
 
-const reqFavicons = __webpack_require__(25);
+const reqFavicons = __webpack_require__(29);
 
 reqFavicons.keys().forEach(reqFavicons);
 webfontloader_default.a.load({
