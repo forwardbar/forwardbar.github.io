@@ -118,12 +118,89 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(38);
-module.exports = __webpack_require__(37);
+__webpack_require__(39);
+module.exports = __webpack_require__(38);
 
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+(function (ELEMENT) {
+  ELEMENT.matches = ELEMENT.matches || ELEMENT.mozMatchesSelector || ELEMENT.msMatchesSelector || ELEMENT.oMatchesSelector || ELEMENT.webkitMatchesSelector;
+
+  ELEMENT.closest = ELEMENT.closest || function closest(selector) {
+    if (!this) return null;
+    if (this.matches(selector)) return this;
+    if (!this.parentElement) return null;
+    return this.parentElement.closest(selector);
+  };
+})(Element.prototype);
+
+(function () {
+  // global DOMTokenList
+  var dummy = document.createElement('div'),
+      dtp = DOMTokenList.prototype,
+      toggle = dtp.toggle,
+      add = dtp.add,
+      rem = dtp.remove;
+  dummy.classList.add('class1', 'class2'); // Older versions of the HTMLElement.classList spec didn't allow multiple
+  // arguments, easy to test for
+
+  if (!dummy.classList.contains('class2')) {
+    dtp.add = function () {
+      Array.prototype.forEach.call(arguments, add.bind(this));
+    };
+
+    dtp.remove = function () {
+      Array.prototype.forEach.call(arguments, rem.bind(this));
+    };
+  } // Older versions of the spec didn't have a forcedState argument for
+  // `toggle` either, test by checking the return value after forcing
+
+
+  if (!dummy.classList.toggle('class1', true)) {
+    dtp.toggle = function (cls, forcedState) {
+      if (forcedState === undefined) return toggle.call(this, cls);
+      (forcedState ? add : rem).call(this, cls);
+      return !!forcedState;
+    };
+  }
+})();
+
+if (!Array.prototype.findIndex) {
+  Array.prototype.findIndex = function (predicate) {
+    if (this == null) {
+      throw new TypeError('Array.prototype.findIndex called on null or undefined');
+    }
+
+    if (typeof predicate !== 'function') {
+      throw new TypeError('predicate must be a function');
+    }
+
+    var list = Object(this);
+    var length = list.length >>> 0;
+    var thisArg = arguments[1];
+    var value;
+
+    for (var i = 0; i < length; i++) {
+      value = list[i];
+
+      if (predicate.call(thisArg, value, i, list)) {
+        return i;
+      }
+    }
+
+    return -1;
+  };
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /*! https://mths.be/scrollingelement v1.5.2 by @diegoperini & @mathias | MIT license */
@@ -241,84 +318,28 @@ if (!('scrollingElement' in document)) (function() {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach;
-}
+var pageHeroLogo = document.querySelector('.page-hero__logo');
+var siteMenu = document.querySelector('.site-nav');
+window.addEventListener('scroll', function () {
+  var bottomOfLogo = pageHeroLogo.offsetTop - pageHeroLogo.clientHeight / 2 - 30;
 
-(function (ELEMENT) {
-  ELEMENT.matches = ELEMENT.matches || ELEMENT.mozMatchesSelector || ELEMENT.msMatchesSelector || ELEMENT.oMatchesSelector || ELEMENT.webkitMatchesSelector;
-
-  ELEMENT.closest = ELEMENT.closest || function closest(selector) {
-    if (!this) return null;
-    if (this.matches(selector)) return this;
-    if (!this.parentElement) return null;
-    return this.parentElement.closest(selector);
-  };
-})(Element.prototype);
-
-(function () {
-  // global DOMTokenList
-  var dummy = document.createElement('div'),
-      dtp = DOMTokenList.prototype,
-      toggle = dtp.toggle,
-      add = dtp.add,
-      rem = dtp.remove;
-  dummy.classList.add('class1', 'class2'); // Older versions of the HTMLElement.classList spec didn't allow multiple
-  // arguments, easy to test for
-
-  if (!dummy.classList.contains('class2')) {
-    dtp.add = function () {
-      Array.prototype.forEach.call(arguments, add.bind(this));
-    };
-
-    dtp.remove = function () {
-      Array.prototype.forEach.call(arguments, rem.bind(this));
-    };
-  } // Older versions of the spec didn't have a forcedState argument for
-  // `toggle` either, test by checking the return value after forcing
-
-
-  if (!dummy.classList.toggle('class1', true)) {
-    dtp.toggle = function (cls, forcedState) {
-      if (forcedState === undefined) return toggle.call(this, cls);
-      (forcedState ? add : rem).call(this, cls);
-      return !!forcedState;
-    };
+  if (bottomOfLogo > window.pageYOffset && siteMenu.classList.contains('scrolled')) {
+    siteMenu.classList.remove('scrolled');
+  } else if (bottomOfLogo < window.pageYOffset) {
+    siteMenu.classList.add('scrolled');
   }
-})();
-
-if (!Array.prototype.findIndex) {
-  Array.prototype.findIndex = function (predicate) {
-    if (this == null) {
-      throw new TypeError('Array.prototype.findIndex called on null or undefined');
-    }
-
-    if (typeof predicate !== 'function') {
-      throw new TypeError('predicate must be a function');
-    }
-
-    var list = Object(this);
-    var length = list.length >>> 0;
-    var thisArg = arguments[1];
-    var value;
-
-    for (var i = 0; i < length; i++) {
-      value = list[i];
-
-      if (predicate.call(thisArg, value, i, list)) {
-        return i;
-      }
-    }
-
-    return -1;
-  };
-}
+});
+document.querySelectorAll('button').forEach(function (btn) {
+  btn.addEventListener('mousedown', function (e) {
+    return e.preventDefault();
+  });
+});
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var tabs = document.querySelectorAll('.nav-tabs');
@@ -349,7 +370,7 @@ tabs.forEach(function (tab) {
 });
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 var tabs = document.querySelectorAll('.accordion');
@@ -377,31 +398,31 @@ tabs.forEach(function (tab) {
 });
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./borsch.jpg": 8,
-	"./burger.jpg": 9,
-	"./buter-sel.jpg": 10,
-	"./cesar-krevetki.jpg": 11,
-	"./cesar-kurica.jpg": 12,
-	"./cheesecake.jpg": 13,
-	"./karbonara.jpg": 14,
-	"./kolbasy-gov.jpg": 15,
-	"./kolbasy.jpg": 16,
-	"./krevetki.jpg": 17,
-	"./kriliya.jpg": 18,
-	"./myasnie-chipsi.jpg": 19,
-	"./myasnoy-nabor.jpg": 20,
-	"./pelmeni.jpg": 21,
-	"./rebra.jpg": 22,
-	"./shaverma.jpg": 23,
-	"./shaverma_krevetki.jpg": 24,
-	"./solyanka.jpg": 25,
-	"./steik-g.jpg": 26,
-	"./tar-tar.jpg": 27,
-	"./zakuski.jpg": 28
+	"./borsch.jpg": 9,
+	"./burger.jpg": 10,
+	"./buter-sel.jpg": 11,
+	"./cesar-krevetki.jpg": 12,
+	"./cesar-kurica.jpg": 13,
+	"./cheesecake.jpg": 14,
+	"./karbonara.jpg": 15,
+	"./kolbasy-gov.jpg": 16,
+	"./kolbasy.jpg": 17,
+	"./krevetki.jpg": 18,
+	"./kriliya.jpg": 19,
+	"./myasnie-chipsi.jpg": 20,
+	"./myasnoy-nabor.jpg": 21,
+	"./pelmeni.jpg": 22,
+	"./rebra.jpg": 23,
+	"./shaverma.jpg": 24,
+	"./shaverma_krevetki.jpg": 25,
+	"./solyanka.jpg": 26,
+	"./steik-g.jpg": 27,
+	"./tar-tar.jpg": 28,
+	"./zakuski.jpg": 29
 };
 
 
@@ -423,146 +444,146 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 7;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/borsch.jpg";
+webpackContext.id = 8;
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/burger.jpg";
+module.exports = __webpack_require__.p + "img/borsch.jpg";
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/buter-sel.jpg";
+module.exports = __webpack_require__.p + "img/burger.jpg";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/cesar-krevetki.jpg";
+module.exports = __webpack_require__.p + "img/buter-sel.jpg";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/cesar-kurica.jpg";
+module.exports = __webpack_require__.p + "img/cesar-krevetki.jpg";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/cheesecake.jpg";
+module.exports = __webpack_require__.p + "img/cesar-kurica.jpg";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/karbonara.jpg";
+module.exports = __webpack_require__.p + "img/cheesecake.jpg";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kolbasy-gov.jpg";
+module.exports = __webpack_require__.p + "img/karbonara.jpg";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kolbasy.jpg";
+module.exports = __webpack_require__.p + "img/kolbasy-gov.jpg";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/krevetki.jpg";
+module.exports = __webpack_require__.p + "img/kolbasy.jpg";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/kriliya.jpg";
+module.exports = __webpack_require__.p + "img/krevetki.jpg";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/myasnie-chipsi.jpg";
+module.exports = __webpack_require__.p + "img/kriliya.jpg";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/myasnoy-nabor.jpg";
+module.exports = __webpack_require__.p + "img/myasnie-chipsi.jpg";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/pelmeni.jpg";
+module.exports = __webpack_require__.p + "img/myasnoy-nabor.jpg";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/rebra.jpg";
+module.exports = __webpack_require__.p + "img/pelmeni.jpg";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/shaverma.jpg";
+module.exports = __webpack_require__.p + "img/rebra.jpg";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/shaverma_krevetki.jpg";
+module.exports = __webpack_require__.p + "img/shaverma.jpg";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/solyanka.jpg";
+module.exports = __webpack_require__.p + "img/shaverma_krevetki.jpg";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/steik-g.jpg";
+module.exports = __webpack_require__.p + "img/solyanka.jpg";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/tar-tar.jpg";
+module.exports = __webpack_require__.p + "img/steik-g.jpg";
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/zakuski.jpg";
+module.exports = __webpack_require__.p + "img/tar-tar.jpg";
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "img/zakuski.jpg";
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var map = {
-	"./android-chrome-144x144.png": 30,
-	"./apple-touch-icon.png": 31,
-	"./favicon-16x16.png": 32,
-	"./favicon-32x32.png": 33,
-	"./favicon.ico": 34,
-	"./mstile-150x150.png": 35,
-	"./safari-pinned-tab.svg": 36
+	"./android-chrome-144x144.png": 31,
+	"./apple-touch-icon.png": 32,
+	"./favicon-16x16.png": 33,
+	"./favicon-32x32.png": 34,
+	"./favicon.ico": 35,
+	"./mstile-150x150.png": 36,
+	"./safari-pinned-tab.svg": 37
 };
 
 
@@ -584,58 +605,58 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 29;
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
+webpackContext.id = 30;
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
+module.exports = __webpack_require__.p + "img/android-chrome-144x144.png";
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon-16x16.png";
+module.exports = __webpack_require__.p + "img/apple-touch-icon.png";
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon-32x32.png";
+module.exports = __webpack_require__.p + "img/favicon-16x16.png";
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/favicon.ico";
+module.exports = __webpack_require__.p + "img/favicon-32x32.png";
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/mstile-150x150.png";
+module.exports = __webpack_require__.p + "img/favicon.ico";
 
 /***/ }),
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
+module.exports = __webpack_require__.p + "img/mstile-150x150.png";
 
 /***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+module.exports = __webpack_require__.p + "img/safari-pinned-tab.svg";
 
 /***/ }),
 /* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -645,12 +666,115 @@ __webpack_require__.r(__webpack_exports__);
 var webfontloader = __webpack_require__(1);
 var webfontloader_default = /*#__PURE__*/__webpack_require__.n(webfontloader);
 
+// EXTERNAL MODULE: ./views/blocks/common/polyfill.js
+var polyfill = __webpack_require__(3);
+
 // EXTERNAL MODULE: ./node_modules/siema/dist/siema.min.js
 var siema_min = __webpack_require__(0);
 var siema_min_default = /*#__PURE__*/__webpack_require__.n(siema_min);
 
+// CONCATENATED MODULE: ./views/blocks/carousel/carousel.js
+
+var carousels = document.querySelectorAll('.carousel');
+
+siema_min_default.a.prototype.addBullets = function addBullets() {
+  var _this = this;
+
+  var count = this.innerElements.length;
+  var bulletsContainer = this.selector.parentNode.querySelector('.carousel__bullets');
+
+  if (count === 0 || !bulletsContainer) {
+    return false;
+  }
+
+  bulletsContainer.innerHtml = '';
+
+  var _loop = function _loop(i) {
+    var btn = document.createElement('button');
+    btn.dataset.index = i;
+    btn.classList.add('carousel__bullet');
+
+    if (i === _this.currentSlide) {
+      btn.classList.add('active');
+    }
+
+    btn.classList.add('carousel__bullet');
+    btn.addEventListener('click', function () {
+      return _this.goTo(i);
+    });
+    bulletsContainer.appendChild(btn);
+  };
+
+  for (var i = 0; i < count; i += 1) {
+    _loop(i);
+  }
+
+  this.config.onChange = function onChange() {
+    var _this2 = this;
+
+    setTimeout(function () {
+      _this2.resizeHandler();
+    }, 400);
+    this.selector.parentNode.querySelector('.carousel__bullets .active').classList.remove('active');
+    this.selector.parentNode.querySelector('.carousel__bullets').children[this.currentSlide].classList.add('active');
+  };
+
+  return true;
+};
+
+var carousel_carouselInit = function carouselInit() {
+  return carousels.forEach(function (carousel) {
+    var track = carousel.querySelector('.carousel__track');
+    var siema = new siema_min_default.a({
+      selector: track,
+      duration: 400,
+      loop: carousel.dataset.loop,
+      perPage: Number(carousel.dataset.perPage) || {
+        720: 2,
+        960: 3
+      },
+      onInit: function onInit() {
+        var _this3 = this;
+
+        setTimeout(function () {
+          _this3.resizeHandler();
+        }, 400);
+      },
+      onChange: function onChange() {
+        var _this4 = this;
+
+        setTimeout(function () {
+          _this4.resizeHandler();
+
+          console.log('change');
+        }, 400);
+      }
+    });
+    var leftBtn = carousel.querySelector('.carousel__arrow--left');
+    var rightBtn = carousel.querySelector('.carousel__arrow--right');
+
+    if (leftBtn && rightBtn) {
+      leftBtn.addEventListener('click', function () {
+        return siema.prev();
+      });
+      rightBtn.addEventListener('click', function () {
+        return siema.next();
+      });
+    }
+
+    siema.addBullets();
+
+    if (Number(carousel.dataset.autoPlay)) {
+      setInterval(function () {
+        return siema.next();
+      }, Number(carousel.dataset.autoPlay));
+    }
+  });
+};
+
+carousel_carouselInit();
 // EXTERNAL MODULE: ./node_modules/scrollingelement/scrollingelement.js
-var scrollingelement = __webpack_require__(3);
+var scrollingelement = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./node_modules/disable-scroll/es/index.js
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -777,14 +901,38 @@ function () {
 }();
 
 /* harmony default export */ var es = (new DisableScroll());
-// EXTERNAL MODULE: ./views/blocks/common/polyfill.js
-var polyfill = __webpack_require__(4);
+// CONCATENATED MODULE: ./views/blocks/menu-toggle/menu-toggle.js
+
+var toggler = document.querySelector('.menu-toggle');
+toggler.addEventListener('click', function (e) {
+  e.preventDefault();
+  var currentTogler = e.currentTarget;
+
+  if (currentTogler.classList.contains('is-active')) {
+    es.off();
+  } else {
+    es.on();
+  }
+
+  currentTogler.classList.toggle('is-active');
+  var menuDropdown = currentTogler.parentNode;
+  menuDropdown.classList.toggle('open');
+  menuDropdown.querySelectorAll('a').forEach(function (link) {
+    return link.addEventListener('click', function () {
+      es.off();
+      currentTogler.classList.remove('is-active');
+      menuDropdown.classList.remove('open');
+    });
+  });
+});
+// EXTERNAL MODULE: ./views/blocks/page-hero/page-hero.js
+var page_hero = __webpack_require__(5);
 
 // EXTERNAL MODULE: ./views/blocks/nav-tabs/nav-tabs.js
-var nav_tabs = __webpack_require__(5);
+var nav_tabs = __webpack_require__(6);
 
 // EXTERNAL MODULE: ./views/blocks/accordion/accordion.js
-var accordion = __webpack_require__(6);
+var accordion = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./views/blocks/fullscreen-gallery/fullscreen-gallery.js
 
@@ -796,7 +944,7 @@ function importAll(r) {
   });
 }
 
-importAll(__webpack_require__(7));
+importAll(__webpack_require__(8));
 
 var buildImgDataObject = function buildImgDataObject(imgElements) {
   var imgDataObject = {};
@@ -916,7 +1064,6 @@ var fullscreen_gallery_galleryInit = function galleryInit(galleryElm) {
 
 fullscreen_gallery_galleryInit(document.querySelector('.fullscreen-gallery'));
 // CONCATENATED MODULE: ./views/main.js
-// import '@babel/polyfill';
 
 
 
@@ -925,148 +1072,14 @@ fullscreen_gallery_galleryInit(document.querySelector('.fullscreen-gallery'));
 
 
 
-var reqFavicons = __webpack_require__(29);
+
+var reqFavicons = __webpack_require__(30);
 
 reqFavicons.keys().forEach(reqFavicons);
 webfontloader_default.a.load({
   google: {
     families: ['Exo 2:300,400:cyrillic', 'Open Sans:300,400,400i,600:cyrillic']
   }
-}); // Hamburger menu
-
-var toggler = document.querySelector('.menu-toggle');
-toggler.addEventListener('click', function (e) {
-  e.preventDefault();
-  var currentTogler = e.currentTarget;
-
-  if (currentTogler.classList.contains('is-active')) {
-    es.off();
-  } else {
-    es.on();
-  }
-
-  currentTogler.classList.toggle('is-active');
-  var menuDropdown = currentTogler.parentNode;
-  menuDropdown.classList.toggle('open');
-  menuDropdown.querySelectorAll('a').forEach(function (link) {
-    return link.addEventListener('click', function () {
-      es.off();
-      currentTogler.classList.remove('is-active');
-      menuDropdown.classList.remove('open');
-    });
-  });
-});
-var pageHeroLogo = document.querySelector('.page-hero__logo');
-var siteMenu = document.querySelector('.site-nav');
-window.addEventListener('scroll', function () {
-  var bottomOfLogo = pageHeroLogo.offsetTop - pageHeroLogo.clientHeight / 2 - 30;
-
-  if (bottomOfLogo > window.pageYOffset && siteMenu.classList.contains('scrolled')) {
-    siteMenu.classList.remove('scrolled');
-  } else if (bottomOfLogo < window.pageYOffset) {
-    siteMenu.classList.add('scrolled');
-  }
-});
-var carousels = document.querySelectorAll('.carousel');
-
-siema_min_default.a.prototype.addBullets = function addBullets() {
-  var _this = this;
-
-  var count = this.innerElements.length;
-  var bulletsContainer = this.selector.parentNode.querySelector('.carousel__bullets');
-
-  if (count === 0 || !bulletsContainer) {
-    return false;
-  }
-
-  bulletsContainer.innerHtml = '';
-
-  var _loop = function _loop(i) {
-    var btn = document.createElement('button');
-    btn.dataset.index = i;
-    btn.classList.add('carousel__bullet');
-
-    if (i === _this.currentSlide) {
-      btn.classList.add('active');
-    }
-
-    btn.classList.add('carousel__bullet');
-    btn.addEventListener('click', function () {
-      return _this.goTo(i);
-    });
-    bulletsContainer.appendChild(btn);
-  };
-
-  for (var i = 0; i < count; i += 1) {
-    _loop(i);
-  }
-
-  this.config.onChange = function onChange() {
-    var _this2 = this;
-
-    setTimeout(function () {
-      _this2.resizeHandler();
-
-      console.log('change with bullets');
-    }, 400);
-    this.selector.parentNode.querySelector('.carousel__bullets .active').classList.remove('active');
-    this.selector.parentNode.querySelector('.carousel__bullets').children[this.currentSlide].classList.add('active');
-  };
-
-  return true;
-};
-
-carousels.forEach(function (carousel) {
-  var track = carousel.querySelector('.carousel__track');
-  var siema = new siema_min_default.a({
-    selector: track,
-    duration: 400,
-    loop: carousel.dataset.loop,
-    perPage: Number(carousel.dataset.perPage) || {
-      720: 2,
-      960: 3
-    },
-    onInit: function onInit() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        _this3.resizeHandler();
-      }, 400);
-    },
-    onChange: function onChange() {
-      var _this4 = this;
-
-      setTimeout(function () {
-        _this4.resizeHandler();
-
-        console.log('change');
-      }, 400);
-    }
-  });
-  var leftBtn = carousel.querySelector('.carousel__arrow--left');
-  var rightBtn = carousel.querySelector('.carousel__arrow--right');
-
-  if (leftBtn && rightBtn) {
-    leftBtn.addEventListener('click', function () {
-      return siema.prev();
-    });
-    rightBtn.addEventListener('click', function () {
-      return siema.next();
-    });
-  }
-
-  siema.addBullets();
-
-  if (Number(carousel.dataset.autoPlay)) {
-    setInterval(function () {
-      return siema.next();
-    }, Number(carousel.dataset.autoPlay));
-  }
-});
-document.querySelectorAll('button').forEach(function (btn) {
-  btn.addEventListener('mousedown', function (e) {
-    return e.preventDefault();
-  });
 });
 
 /***/ })
