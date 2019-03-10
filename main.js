@@ -999,8 +999,7 @@ siema_min_default.a.prototype.addBullets = function addBullets() {
 
   for (var i = 0; i < count; i += 1) {
     _loop(i);
-  } // const remeberChange = this.config.onChange;
-
+  }
 
   this.config.onChange = function onChange() {
     var _this2 = this;
@@ -1063,8 +1062,7 @@ carousels.forEach(function (carousel) {
       return siema.next();
     }, Number(carousel.dataset.autoPlay));
   }
-}); // disable outline for pressed buttons, but still works;
-
+});
 document.querySelectorAll('button').forEach(function (btn) {
   btn.addEventListener('mousedown', function (e) {
     return e.preventDefault();
